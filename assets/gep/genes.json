@@ -1,0 +1,145 @@
+{
+  "version": 2,
+  "genes": [
+    {
+      "type": "Gene",
+      "id": "gene_prompt_ecommerce_red_cta",
+      "category": "optimize",
+      "signals_match": [
+        "low_ctr",
+        "cta_invisible",
+        "ecommerce_promo"
+      ],
+      "preconditions": [
+        "poster is for e-commerce flash sale or promotion"
+      ],
+      "strategy": [
+        "Add 'bold red CTA button' and 'high contrast white text' to the prompt",
+        "Use 'vibrant commercial photography' and 'cinematic lighting' keywords",
+        "Ensure background leaves clear space for price/tag overlay in edit_plan"
+      ],
+      "constraints": {
+        "max_files": 10,
+        "forbidden_paths": [
+          ".git",
+          "node_modules"
+        ]
+      },
+      "validation": [
+        "node -e \"console.log('ecommerce prompt gene validated')\""
+      ]
+    },
+    {
+      "type": "Gene",
+      "id": "gene_edit_text_overlay",
+      "category": "optimize",
+      "signals_match": [
+        "text_render_failure",
+        "text_legibility_low",
+        "font_chaos"
+      ],
+      "preconditions": [
+        "generated image has blurry, missing, or unreadable Chinese text"
+      ],
+      "strategy": [
+        "In edit_plan, replace vague 'add text' with specific font style and position",
+        "Request 'large modern sans-serif Chinese font' with 'strong contrast shadow'",
+        "Limit text elements to 1 headline + 1 CTA per edit round"
+      ],
+      "constraints": {
+        "max_files": 10,
+        "forbidden_paths": [
+          ".git",
+          "node_modules"
+          ]
+      },
+      "validation": [
+        "node -e \"console.log('text overlay gene validated')\""
+      ]
+    },
+    {
+      "type": "Gene",
+      "id": "gene_prompt_minimalist_brand",
+      "category": "optimize",
+      "signals_match": [
+        "brand_awareness",
+        "visual_clutter",
+        "premium_tone"
+      ],
+      "preconditions": [
+        "brand tone includes elegant, warm, natural, or premium descriptors"
+      ],
+      "strategy": [
+        "Use 'elegant minimalist photography', 'soft natural lighting', 'pastel tones' in style_prompt",
+        "Apply asymmetric composition with generous whitespace in composition_prompt",
+        "Keep edit_plan to 2 rounds: headline overlay + subtle QR/tag placement"
+      ],
+      "constraints": {
+        "max_files": 10,
+        "forbidden_paths": [
+          ".git",
+          "node_modules"
+        ]
+      },
+      "validation": [
+        "node -e \"console.log('brand prompt gene validated')\""
+      ]
+    },
+    {
+      "type": "Gene",
+      "id": "gene_prompt_tech_neon",
+      "category": "optimize",
+      "signals_match": [
+        "event_announcement",
+        "tech_launch",
+        "futuristic_visual"
+      ],
+      "preconditions": [
+        "poster is for tech product launch or AI conference"
+      ],
+      "strategy": [
+        "Use 'futuristic tech visual', 'neon accent lights', 'dark moody background with particles' in style_prompt",
+        "Apply dynamic diagonal composition with strong contrast",
+        "Edit plan: glowing headline in tech sans-serif + event details in neon cyan + holographic CTA"
+      ],
+      "constraints": {
+        "max_files": 10,
+        "forbidden_paths": [
+          ".git",
+          "node_modules"
+        ]
+      },
+      "validation": [
+        "node -e \"console.log('tech prompt gene validated')\""
+      ]
+    },
+    {
+      "type": "Gene",
+      "id": "gene_edit_color_correction",
+      "category": "repair",
+      "signals_match": [
+        "color_bland",
+        "image_resolution_low",
+        "prompt_quality_low"
+      ],
+      "preconditions": [
+        "visual output lacks saturation or contrast for advertising impact"
+      ],
+      "strategy": [
+        "Add 'saturated colors', 'high contrast', 'vivid advertising look' to the next generation prompt",
+        "If editing existing image, instruct 'increase saturation and contrast by 30%'",
+        "Validate output file size > 100KB to ensure sufficient detail"
+      ],
+      "constraints": {
+        "max_files": 10,
+        "forbidden_paths": [
+          ".git",
+          "node_modules"
+        ]
+      },
+      "validation": [
+        "node -e \"console.log('color correction gene validated')\""
+      ]
+    }
+  ]
+}

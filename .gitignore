@@ -205,3 +205,21 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Node
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Project outputs
+output/
+outputs/
+memory/*.jsonl
+memory/*.txt
+memory/*.json
+!memory/.gitkeep
+
+# Evolver runtime
+.evolver/
+*.pid

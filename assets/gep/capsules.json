@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "capsules": [
+    {
+      "type": "Capsule",
+      "schema_version": "1.5.0",
+      "id": "capsule_ecommerce_618_v1",
+      "trigger": [
+        "ecommerce_promo",
+        "high_conversion_goal",
+        "f_pattern_needed"
+      ],
+      "gene": "gene_poster_layout_f_pattern",
+      "summary": "E-commerce flash-sale poster capsule combining F-pattern layout, high-contrast CTA, and 3-level typography for mobile-first conversion.",
+      "confidence": 0.88,
+      "blast_radius": {
+        "files": 3,
+        "lines": 45
+      },
+      "outcome": {
+        "status": "success",
+        "score": 0.88
+      }
+    },
+    {
+      "type": "Capsule",
+      "schema_version": "1.5.0",
+      "id": "capsule_1773620020765",
+      "trigger": [
+        "memory_missing",
+        "session_logs_missing"
+      ],
+      "gene": "gene_repair_missing_memory_structure",
+      "summary": "Initialized missing evolution infrastructure by creating skills directory, evolution state file, environment configuration, and memory templates.",
+      "confidence": 0.92,
+      "blast_radius": {
+        "files": 4,
+        "lines": 80
+      }
+    },
+    {
+      "type": "Capsule",
+      "schema_version": "1.5.0",
+      "id": "capsule_1776173620763",
+      "trigger": [
+        "memory_missing",
+        "session_logs_missing"
+      ],
+      "gene": "gene_initialize_memory_infrastructure",
+      "summary": "Initialized missing memory infrastructure including evolution state file and session logs to enable proper audit trails and state recovery",
+      "confidence": 0.92,
+      "blast_radius": {
+        "files": 3,
+        "lines": 48
+      }
+    },
+    {
+      "type": "Capsule",
+      "schema_version": "1.5.0",
+      "id": "capsule_1775288337985",
+      "trigger": [
+        "memory_missing",
+        "session_logs_missing"
+      ],
+      "gene": "gene_repair_missing_memory_infrastructure",
+      "summary": "Repaired missing memory infrastructure by creating MEMORY.md and session log files enabling proper evolution tracking",
+      "confidence": 0.9,
+      "blast_radius": {
+        "files": 2,
+        "lines": 40
+      }
+    }
+  ]
+}

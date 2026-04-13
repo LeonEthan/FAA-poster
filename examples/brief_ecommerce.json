@@ -1,0 +1,15 @@
+{
+  "project": "618 数码狂欢节",
+  "brand_tone": ["年轻", "活力", "科技"],
+  "target_audience": "18-30 岁城市白领，追求性价比的数码爱好者",
+  "key_message": "旗舰耳机直降 500 元",
+  "visual_premise": "红色促销氛围 + 产品悬浮光效",
+  "mandatory_elements": ["品牌 Logo", "限时标签", "立即抢购"],
+  "constraints": {
+    "size": "1080x1350",
+    "language": "zh-CN"
+  },
+  "reference_urls": [
+    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800"
+  ]
+}

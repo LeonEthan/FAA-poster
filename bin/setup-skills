@@ -1,0 +1,33 @@
+#!/bin/bash
+set -e
+
+SKILLS_DIR="$(cd "$(dirname "$0")/.." && pwd)/skills"
+TARGET_DIR="${HOME}/.kimi/skills"
+
+mkdir -p "${TARGET_DIR}"
+
+echo "🔗 Linking PosterStack skills to ${TARGET_DIR} ..."
+
+for skill_path in "${SKILLS_DIR}"/*; do
+  if [ -d "${skill_path}" ]; then
+    skill_name=$(basename "${skill_path}")
+    link_name="${TARGET_DIR}/posterstack-${skill_name}"
+
+    if [ -L "${link_name}" ]; then
+      rm "${link_name}"
+    fi
+
+    ln -s "${skill_path}" "${link_name}"
+    echo "  ✓ ${skill_name} -> posterstack-${skill_name}"
+  fi
+done
+
+echo ""
+echo "🎉 PosterStack skills installed."
+echo "Available commands:"
+echo "  /poster-brief"
+echo "  /poster-strategy"
+echo "  /poster-prompt"
+echo "  /poster-visualize"
+echo "  /poster-edit"
+echo "  /poster-check"

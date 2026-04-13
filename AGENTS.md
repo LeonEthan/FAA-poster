@@ -5,39 +5,80 @@
 ## Project Overview
 
 **Repository Name:** `FAA-poster`  
-**Remote:** `https://github.com/LeonEthan/FAA-poster.git`  
 **Current Branch:** `main`
 
-This is a **newly initialized Git repository** (only one commit: "Initial commit"). At present, the project contains **no source code, no configuration files, and no defined build system**.
+This is a **PosterStack** project — an evolving AI poster/advertisement generation system built on top of `gstack-kimi-cli`, `evolver`, and `Gemini 3.1 Flash Image Preview` (nano-banana 2) via dmxapi.cn.
 
-## Current Repository Contents
-
-The only tracked file is:
-
-- `.gitignore` — A comprehensive Python-oriented `.gitignore` template. It ignores common Python artifacts (`__pycache__`, `*.pyc`, build directories), virtual environments (`.venv`, `env/`), package-manager lock files (UV, Poetry, PDM, Pixi), IDE settings (PyCharm, VS Code, Cursor), and testing/coverage artifacts (`.pytest_cache/`, `.coverage`, `htmlcov/`).
-
-There are **no** `pyproject.toml`, `package.json`, `Cargo.toml`, `requirements.txt`, `Makefile`, or other technology-specific configuration files present.
+**Architecture v2.0 (ImageGen Stack):**  
+The system has pivoted from HTML-based pre-layout rendering to a **pure image generation + multi-turn editing** workflow. Posters are created entirely through text-to-image and conversational image editing, then evolved via the GEP protocol.
 
 ## Technology Stack
 
-**Unknown / Not yet established.**
+- **gstack-kimi-cli** (`~/.kimi/skills/posterstack-*`): 6 custom skills for design-role collaboration.
+- **evolver** (`EvoMap/evolver`): GEP-powered evolution engine running in standalone mode.
+- **dmxapi.cn**: Host for `gemini-3.1-flash-image-preview` (Nano Banana 2) supporting 1K/2K/4K image generation and multi-turn image editing.
+- **Node.js 18+**: Bridge (`bridge/`) and Applier (`applier/`), including auto-LLM runner.
+- **Python 3.9+**: API wrapper layer (`src/faa_poster/`) using `requests` and `pillow`.
 
-The `.gitignore` suggests the project is *likely* intended to be Python-based, but this cannot be confirmed until source files and dependency manifests are added.
+## Directory Layout
 
-## Code Organization
+```
+skills/           # Custom gstack SKILL.md definitions
+  poster-brief/
+  poster-strategy/
+  poster-prompt/    # NEW: Prompt engineer
+  poster-visualize/ # NEW: Text-to-image generation
+  poster-edit/      # NEW: Multi-turn image editing
+  poster-check/
+bridge/           # Signal collector & formatter for evolver memory/
+applier/          # GEP prompt parser, skill updater, and LLM auto-caller
+assets/gep/       # genes.json & capsules.json (image-prompt focused)
+memory/           # Evolver input logs (gitignored)
+src/faa_poster/   # Python CLI and API wrappers
+  imagegen.py       # Gemini Image API wrapper
+  prompt_builder.py # brief → structured image prompt
+  cli.py            # Commands: visualize, edit, check, build-prompt
+examples/         # Sample briefs (JSON)
+tests/            # Node.js built-in tests + pytest
+```
 
-**Not applicable.** No source directories or modules exist yet.
+## Build, Test, and Run
 
-## Build, Test, and Deployment
+### Install
+```bash
+npm install
+pip install -e ".[dev]"
+bash bin/setup-skills
+```
 
-**Not applicable.** No build scripts, test suites, CI/CD configurations, or deployment manifests exist yet.
+### Run one design round manually
+In Kimi CLI:
+```
+/poster-brief
+/poster-strategy
+/poster-prompt
+/poster-visualize
+/poster-edit
+/poster-check
+```
+
+### Run fully automated evolution loop
+```bash
+bash run-poster-evolution.sh 1
+```
+This script is fully automated: after evolver generates the GEP prompt, `applier/index.js --auto-llm` calls the configured LLM API (defined in `.env`) to obtain the Mutation/Gene/Capsule JSON, then applies it to the skill definitions.
+
+### Run tests
+```bash
+npm test          # Node bridge/applier tests
+pytest            # Python model/prompt tests
+```
 
 ## Development Conventions
 
-**Not yet defined.** Since there is no existing code, there are no established style guidelines, linting rules, or testing strategies to follow. When code is added, it will be up to the first commits to establish these conventions.
-
-## Recommendations for Future Agents
-
-1. **Verify the actual stack** before making assumptions. Look for `pyproject.toml`, `requirements.txt`, `package.json`, etc., to confirm the language and framework.
-2. **Check for new commits** if returning to this repo later; the current empty state may have changed.
-3. **Start simple** if bootstrapping the project: add a dependency file and a minimal entry point, then expand.
+- **Skills**: Do not edit `SKILL.md` if a `.tmpl` exists (not yet used here). For now, edit `.md` directly.
+- **Evolver assets**: `genes.json` and `capsules.json` must remain valid JSON. `capsules.json` is auto-updated by `applier/`.
+- **Memory logs**: `memory/` is ephemeral. Only `.gitkeep` is tracked.
+- **Non-destructive applier**: The applier appends evolved rules to `SKILL.md` instead of rewriting the whole file.
+- **API credentials**: Stored in `.env` (ignored by git). Never hardcode keys.
+- **Image editing timeout**: Each `edit_image` API call can take 2-4 minutes. The wrapper uses a 180-second HTTP timeout.

@@ -1,0 +1,15 @@
+{
+  "project": "春日限定茶饮",
+  "brand_tone": ["温暖", "自然", "精致"],
+  "target_audience": "25-35 岁都市女性，注重生活品质",
+  "key_message": "一口遇见春天",
+  "visual_premise": "淡绿渐变背景 + 樱花与茶杯组合",
+  "mandatory_elements": ["品牌 Logo", "新品标签", "扫码领券"],
+  "constraints": {
+    "size": "1080x1350",
+    "language": "zh-CN"
+  },
+  "reference_urls": [
+    "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800"
+  ]
+}

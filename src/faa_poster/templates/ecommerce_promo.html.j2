@@ -1,0 +1,18 @@
+{% extends "base.html.j2" %}
+
+{% block content %}
+<div class="poster">
+  <div class="poster-header">
+    <h1>{{ key_message }}</h1>
+    {% if subtitle %}<h2>{{ subtitle }}</h2>{% endif %}
+  </div>
+  <div class="poster-body">
+    {% if product_image %}<img class="hero" src="{{ product_image }}" alt="product">{% endif %}
+    {% if not product_image %}<p class="body" style="text-align:center;font-size:1.4rem;font-weight:700;">{{ visual_premise }}</p>{% endif %}
+  </div>
+  <div class="poster-footer" style="text-align:center;">
+    <a class="cta" href="#">{{ cta_text | default('立即购买') }}</a>
+    {% if price %}<p class="body" style="margin-top:0.5em;font-weight:700;color:var(--primary-color);">{{ price }}</p>{% endif %}
+  </div>
+</div>
+{% endblock %}

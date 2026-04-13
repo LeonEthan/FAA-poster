@@ -1,0 +1,15 @@
+{
+  "project": "AI 产品发布会",
+  "brand_tone": ["前沿", "专业", "沉稳"],
+  "target_audience": "技术从业者、投资人、媒体",
+  "key_message": "下一代智能，从此开始",
+  "visual_premise": "深空蓝背景 + 霓虹光线 + 产品剪影",
+  "mandatory_elements": ["公司 Logo", "时间地点", "立即报名"],
+  "constraints": {
+    "size": "1080x1920",
+    "language": "zh-CN"
+  },
+  "reference_urls": [
+    "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800"
+  ]
+}
